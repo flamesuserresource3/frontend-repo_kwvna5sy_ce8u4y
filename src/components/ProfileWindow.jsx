@@ -27,30 +27,56 @@ function WindowShell({ title, children }) {
   );
 }
 
+function SkillBar({ label, value }) {
+  return (
+    <div className="space-y-1">
+      <div className="flex items-center justify-between text-xs">
+        <span>{label}</span>
+        <span className="opacity-70">{value}%</span>
+      </div>
+      <div className="h-4 rounded-sm border-2 overflow-hidden group" style={{ borderColor: colors.sage, background: '#fff' }}>
+        <div
+          className="h-full transition-all duration-700 ease-in-out group-hover:w-[101%]"
+          style={{ width: `${Math.max(10, value)}%`, background: colors.rose }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function ProfileWindow() {
   return (
     <section id="about" className="px-4 py-12 md:py-16" style={{ background: '#fbf3e8' }}>
       <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-6 items-start">
         <div className="md:col-span-2">
-          <WindowShell title="Profile">
+          <WindowShell title="Profile Properties">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-md border-2" style={{ borderColor: colors.sage, background: colors.peach }} />
               <div>
                 <h2 className="text-lg font-bold" style={{ color: '#486133' }}>Aishwarya Lolla</h2>
                 <p className="text-xs">CSE Undergraduate • 2023–2027</p>
                 <p className="text-xs">Pragati Engineering College, Surampalem</p>
+                <p className="text-xs mt-2">Interests: Java • Web Dev • Design ✨💾⭐</p>
               </div>
             </div>
           </WindowShell>
         </div>
         <div className="md:col-span-3">
-          <WindowShell title="About Aishwarya">
-            <ul className="list-disc pl-5 space-y-2 text-sm">
-              <li>Java developer who enjoys writing clean, readable code</li>
-              <li>Web projects with a focus on friendly, retro-inspired UX</li>
-              <li>Design lover — pastel palettes, pixel art, cozy vibes</li>
-              <li>Curious learner exploring frontend frameworks and UI motion</li>
-            </ul>
+          <WindowShell title="About & Skills">
+            <div className="space-y-5">
+              <ul className="list-disc pl-5 space-y-2 text-sm">
+                <li>Java developer who enjoys writing clean, readable code</li>
+                <li>Web projects with a focus on friendly, retro-inspired UX</li>
+                <li>Design lover — pastel palettes, pixel art, cozy vibes</li>
+                <li>Curious learner exploring frontend frameworks and UI motion</li>
+              </ul>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <SkillBar label="Java" value={85} />
+                <SkillBar label="HTML/CSS" value={80} />
+                <SkillBar label="React" value={70} />
+                <SkillBar label="UI Design" value={78} />
+              </div>
+            </div>
           </WindowShell>
         </div>
       </div>
